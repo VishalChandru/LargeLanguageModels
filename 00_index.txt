@@ -1,0 +1,937 @@
+1. Natural Language Processing
+    1.1 What is Natural Language?
+        1.1.1 Stages
+            1.1.1.1 Phonological 
+            (Speech sound - acoustic waves / Speach recognition) [Computational Phonology]
+            1.1.1.2 Morphological 
+            (Internal Structure of words - Stem of a word is morphene / Information retrival Eg. play,playing,played; 'play' is morphene) [Finite State Transducers]
+            1.1.1.3 Lexical
+            (Understanding of about distinct words according to their meanings and their relation to other words. Eg. Duck)
+            1.1.1.4 Syntactic
+            (Analysis of words in the sentence for grammar and arranging words in a manner that shows the relationship among the words. Eg. I ate banana: 'I banana ate'is wrong) [CFG and parsing techniques]
+            1.1.1.5 Semantic
+            (Deals with meaning of different words, how do they combine together to form the meaning of the larger unit. Eg. Hot ice-cream: Wrong, Cold fire: Wrong)
+            1.1.1.6 Pragmatic
+            (Explains how extra meaning is read into texts without actually being encoded in them. Eg. I am Vishal. My friend is Sharan. He is good. ;'He' is refering to Sharan, not vishal)
+            1.1.1.7 Discourse Analysis
+            (The meaning of any sentence depends upon the meaning of the sentence just before it. Eg. I only like to solve theory questions in exam. Therefore I attempted only Q. 1 and Q.2. : Infers both Q1 and Q2 are theory questions)
+    1.2 What is NLP?
+    1.3 Why NLP?
+    1.4 Python Libraries for NLP
+        1.4.1 nltk
+        1.4.2 tensorflow
+        1.4.3 keras
+        1.4.4 Spacy
+        1.4.5 HuggingFace
+    1.5 Tools
+        1.5.1 Python
+        1.5.2 TensorFlow
+        1.5.3 LangChain
+        1.5.4 LaamaIndex
+        1.5.5 Cassandra (Vector DataBase)
+
+2. Data Preprocessing
+    2.1 Tokenization
+        2.1.1 sent_tokenizer
+        2.1.2 word_tokenizer
+    2.2 Stemming & Lemmatization
+        2.2.1 PorterStemmer
+        2.2.2 WordNetLemmatizer
+    2.3 Stopwords
+    2.4 Out-of-Vocabulary words (OOV)
+    2.5 Steps of Data Preprocessing
+        2.5.1 Split paragraphs to individual sentences (sent_tokenizer).
+        2.5.2 Regualar Expression to remove punctuations, numbers and symbols. Keep only text.
+        2.5.3 Lower Case all the words in the sentences.
+        2.5.4 Split sentences to individual words (word_tokenizer).
+        2.5.5 Remove all the stop words.
+        2.5.6 Stemming or Lemmatization of words.
+        2.5.6 Join all the words in their respective sentences.
+        2.5.7 Pad Sequences
+    2.6 <SOS> (Start of Sentence)
+    2.7 <EOS> (End of Sentence)
+3. Word Embeddings
+    3.1 Count or Frequency
+        3.1.1 One-hot Representation (OHE)
+        3.1.2 Bag of Words (BOW)
+        3.1.3 TF-IDF (Term Frequency - Inverse Document Frequency)
+    3.2 Semantic Representation
+        3.2.1 Word2Vec (Train from scratch)
+            3.2.1.1 Common Bag of Words (CBOW)
+                3.2.1.1.1 Train to Predict Middle word based on surrounding word in word-window
+            3.2.1.2 Skip Gram
+                3.2.1.2.1 Train to Predict surrounding word based on middle word in word-window
+            3.2.1.3 Average Word2Vec
+            3.2.1.4 Negative Sampling
+            3.2.1.5 Heirarchial Softmax
+        3.2.2 Glove (Transfer learning from another model)
+
+4. RNN (Recurrent Neural Network)
+    4.1 Architecture
+    4.2 Training
+    4.3 Inference
+    4.4 Use Case
+    4.5 Disadvantage
+
+5. LSTM (Long-Short Term Memory)
+    5.1 Architecture
+        5.1.1 States
+            5.1.1.1 Cell State (Long memory line)
+            5.1.1.2 Hidden State (Short memory line) [output]
+        5.1.2 Gates
+            5.1.2.1 Forget Gate
+            5.1.2.2 Input Gate
+            5.1.2.3 Output Gate
+    5.2 Stacked LSTM
+    5.3 Training
+    5.4 Inference
+    5.5 Use Case
+    5.6 Disadvantage
+
+6. GRU (Gated Recurrent Unit)
+    6.1 Architecture
+        6.1.1 Update Gate
+        6.1.2 Refresh Gate
+
+7. Bi-directional RNN/LSTM
+    7.1 Architecture
+    7.3 Training
+    7.4 Inference
+    7.5 Use Case
+    7.6 Disadvantage
+
+8. Time-Series Forecasting using LSTM
+    8.1 Data Preprocessing
+    8.2 text_to_sequence() method
+    8.3 Use Case
+
+9. Sequence to Sequence Encoder-Decoder model
+    9.1 Architecture
+        9.1.1 Encoder
+            9.1.1.1 Unrolled LSTM/RNN
+            9.1.1.2 Context Vector (cell state and hidden state)
+        9.1.2 Decoder
+            9.1.2.1 Unrolled LSTM/RNN
+            9.1.2.2 Initialize states with Context Vector
+    9.2 Training
+    9.3 Inference
+    9.2 Use Case
+        9.2.1 Language Translation
+    9.3 Disadvantage
+
+10. Attention Models
+    10.1 Architecture
+        10.1 word-window from encoder to individual decoder
+        10.2 Fully Connected Neural Network
+    10.3 Training
+    10.4 Inference
+    10.5 Use Case
+    10.6 Disadvantage
+
+11. Transformers (Attention is all you need)
+    11.1 Architecture (English to French Translation)
+        11.1.1 Encoder (Input Words - English words) [Relationship within input words]
+            11.1.1.1 Word Embeddings
+            11.1.1.2 Position Embeddings
+            11.1.1.3 Self-Attention (Single Headed vs Multi Headed)
+                11.1.1.3.1 Query (Word_Embed * weights (Wq_encode))
+                11.1.1.3.2 Keys (Word_Embed * weights (Wk_encode))
+                11.1.1.3.3 Value (Word_Embed * weights (Wv_encode))
+                11.1.1.3.4 Similarity Score (Query * Keys) / root(Word_Embed_dim)
+                11.1.1.3.5 Softmax of Similarity Score
+                11.1.1.3.6 Sum(Softmax * Value)
+            11.1.1.4 Add Residual Connection
+            11.1.1.5 Normalization (After encoder steps we get self attention score for every word)
+        11.1.2 Decoder (Output words - French words) [Relationship within output words]
+            11.1.2.1 Word Embeddings
+            11.1.2.2 Position Embeddings
+            11.1.2.3 Self-Attention (Single Headed vs Multi Headed)
+                11.1.2.3.1 Query (Word_Embed * weights (Wq_decode))
+                11.1.2.3.2 Keys (Word_Embed * weights (Wk_decode))
+                11.1.2.3.3 Value (Word_Embed * weights (Wv_decode))
+                11.1.2.3.4 Similarity Score (Query * Keys) / root(Word_Embed_dim)
+                11.1.2.3.5 Softmax of Similarity Score
+                11.1.2.3.6 Sum(Softmax * Value)
+            11.1.2.4 Add Residual Connection
+            11.1.2.5 Normalization (After decoder steps we get self attention score for every word)
+            11.1.2.6 Encoder-Decode Attention [Relationship between input and output]
+                11.1.2.6.1 Query (Self Attension Score * weights (Wq_encode-decode)) [output word - French]
+                11.1.2.6.2 Keys (Self Attension Score * weights (Wk_encode-decode)) [input words - English]
+                11.1.2.6.3 Value (Self Attension Score * weights (Wv_encode-decode)) [input words - English]
+                11.1.2.6.4 Similarity Score (Query * Keys) / root(Word_Embed_dim)
+                11.1.2.6.5 Softmax of Similarity Score
+                11.1.2.6.6 Sum(Softmax * Value)
+            11.1.2.7 Add Residual Connection
+        11.1.3 Fully Connected Neural Network 
+    11.2 Training
+        11.2.1 Teacher Forcing
+    11.3 Inference
+    11.4 Types
+        11.4.1 Encoder Only Transformers
+        11.4.2 Decoder Only Trainsformers
+            11.4.2.1 GPT
+        11.4.3 Difference between the types of Transformers
+    11.5 Use Cases
+
+12. Language Models (LM)
+    12.1 Models
+        12.1.1 N-Gram Model
+            12.1.1.1 Types
+                12.1.1.1.1 UniGram [no history]
+                12.1.1.1.2 Bi-Gram [one history]
+                12.1.1.1.3 Tri-Gram [two history]
+                12.1.1.1.4 Four-Gram [three history]
+            12.1.1.2 Optimization
+                12.1.1.2.1 Laplace Smoothing (overcome 0 probability)
+                12.1.1.2.2 Log (add prob) (overcome underflow of mult of prob)
+        12.1.2 Part of Speech Tag (POS) 
+        (Syntactic category or class of any word in a natural language sentence. e.g. Noun, Verb, Adjective, Adverb etc.)
+            12.1.2.1 Categories
+                12.1.2.1.1 Closed class [Eg. Prepositions, Determiners, Pronoun, Connectives]
+                (Relatively fixed set of words (limited in number))
+                12.1.2.1.2 Open class [Eg. Nouns, Verbs, Adjectives, Adverbs]
+                (Cannot associate a fixed set of words, new words can be frequently encountered with such POS tags)
+            12.1.2.2 Level of Detail
+                12.1.2.2.1 Coarce grain Level (Eg. Noun is enough - singluar noun or plural noun is not important)
+                12.1.2.2.2 Fine grain level (Eg. Verb is not enough - also present, past and future verbs is important)
+            12.1.2.2 Models
+                12.1.2.2.1 Penn Treebank (PTB) [45 POS tags]
+                12.1.2.2.2 Automated POS Tagging
+                12.1.2.2.3 Hidden Markov Model
+                12.1.2.2.4 Maximum Entropy Model (Sentiment Analysis)
+            12.1.2.3 Classification
+                12.1.2.3.1 Rule based
+                12.1.2.3.1 Stochastic/ Statistical based
+                    12.1.2.3.1.1 Transformation based
+                    12.1.2.3.1.2 Probablistic
+                        12.1.2.3.1.2.1 Generative Model
+                            12.1.2.3.1.2.1.1 Hidden Markov Model 
+                            [State transition probability: N-gram, Emmission probability: Bayes rule of Conditional Prob]
+                        12.1.2.3.1.2.2 Discriminative Model
+    12.2 Evaluation for Large Models
+        12.2.1 Intrinsic
+            12.2.1.2 Perplexity 
+            (Finds the best n-gram model or within the types of given model for a given corpus) [inverse prob of test data]
+        12.2.2 Extrinsic (Compare between two different models n-gram and POS)
+    12.2 Use Cases
+        12.2.1 OCR (Optical Character Recognition)
+        12.2.2 Correcting a sentence
+        12.2.3 Speach Recognition
+        12.2.4 Machine Translation
+        12.2.5 Suggestions while typing
+        12.2.6 Auto Complete Prediction
+        12.3.7 Context sensitive spelling correction (College and Collage)
+
+13. Large Language Models (Self-Supervised Learning)
+    13.1 Terminology
+        13.1.1 Prompt (input)
+        13.1.2 Completion (output)
+        13.1.3 Inference (prediction)
+        13.1.4 Context window (context vector)
+        13.1.5 Parameters (weights and biases of the model)
+    13.2 Architecture
+        13.2.1 Transformers
+            13.2.1.1 Encoder Only Transformers [AutoEncoder Models] - Masked Language Modeling (MLM)
+                        Input: Randomly masked tokens in sentence
+                        Objective: Identify the masked token
+                        Method: Bidirectional context
+                        Eg: Prompt: The teacher <MASK> the student
+                            Target: The teacher teaches the student 
+                        Use Case: Sentiment Analysis, Named entity recognition, word classification
+                        Models: BERT, ROBERTA
+            13.2.1.2 Encoder Decoder Transformers [Sequence-to-Sequence Models] - Span curruption
+                        Input: Masked random sequences of input tokens (Span Curruption) in sentence [Sentinel Token]
+                        Objective: Reconstruct span
+                        Eg: Prompt: The teacher <X> student
+                            Target: <X> teaches the
+                        Use Case: Language Translation, Text summarization, Question answering
+                        Models: T5, BART
+            13.2.1.3 Decoder Only Transformers [AutoRegressive Models] - Casual Language Modeling (CLM)
+                        Input: Predicted words
+                        Objectve: Predict next token
+                        Method: Unidirectional context
+                        Eg: Prompt: The teacher ?
+                            Target: The teacher teaches
+                        Use Cases: Text generation, other emergent behaviour (depends on model size)
+                        Models: GPT, BLOOM
+                        (GPT/ Text Generation) 
+    13.3 Post-Training Techniques
+        13.3.1 Prompting and Prompt Engineering
+            13.3.1.1 In-Context learning
+                13.3.1.1.1 zero-shot inference (no example in prompt - works good only with large scale model)
+                13.3.1.1.2 one-shot inference (one example in prompt - works good with little less scale model)
+                13.3.1.1.3 few-shot inference (two or more example in prompt - works good with small scale model)
+                13.3.1.1.4 Limitations of In-Context Learning
+                    - May not work for smaller models (LLM)
+                    - Examples take up space in context window
+        13.3.2 Instruction Finetuning (Supervised Learning process) [Task-specific application of LLM] [Finetuned Model -> Instruct LLM]
+                13.3.2.1 Dataset
+                         - Prompt-Completion pairs is the Dataset
+                         - Prompt Framework:
+                            Instruction (Translate this sentence to..., Summarize the following text:)
+                            [Example text]
+                            [Example Completion]
+                         - Prompt Instruction template libraries
+                13.3.2.2 Types
+                    13.3.2.2.1 Based on parameters
+                        13.3.2.2.1 Full fine-tuning (updates all the parameters (weights) of the LLM) [Limitation - catastrophic forgeting]
+                            13.3.2.2.1.1 Limitation - creates full copy of original LLM per task (Too much storage - memory insufficient for multi-task training)
+                        13.3.2.2.2 Parameter Efficient Fine-Tuning (PEFT)
+                                   - overcomes the catastropic forgetting
+                                   - Preserves the pre-trained weights and updates only the weights of specific task adaptation layers
+                            13.3.2.2.1.1 Techniques
+                                   - Freeze most of the original LLM pre-trained weights (parameters) and finetune some of it
+                                   - Freeze all the original LLM pre-trained weights (parameters) and add new layers to the LLM and train those layers with specific tasks (finetune)
+                            13.3.2.2.1.2 Advantage
+                                   - saves space and is flexible as it does not create full copy of the original LLM parameters per task.
+                                   - it only trains the PEFT weights per task.
+                            13.3.2.2.1.3 PEFT Trade-offs
+                                   - Parameter Efficiency
+                                   - Training Speed
+                                   - Memory Efficiency
+                                   - Model performance
+                                   - Inference cost
+                            13.3.2.2.1.4 Methods
+                                   - Selective Method (Uses original LLM parameters)
+                                        Select subset of initial LLM parameters to fine-tune (Significant Tradeoffs between parameter efficiency and Compute Efficiency)
+                                   - Reparameterization Method (Uses original LLM parameters)
+                                        Reparameterize model weights using a low-rank representation. Eg. LoRA (Low - Rank Adaptation) Model
+                                   - Additive Method (Freeze the original LLM parameters)
+                                        Add Trainable layers or parameters to model
+                                        Two methods
+                                            - Adapters - adds new trainable layers to the model architecture typically inside encoder and decoder components after the self attention and feed forward layers
+                                            - Soft Prompts - keep the model architecture fixed or (frozen),
+                                                                - focus on manipulating the inputs and adding trainable parameter to prompt embeddings or
+                                                                - keep the input fixed and retraining the embedding weights
+                                                                - Eg. Prompt Tuning
+                            13.3.2.2.1.4 Reparameterization Method of PEFT
+                                13.3.2.2.1.4.1 LoRA of Large Language models Method (Low-Rank Adaptation) (Singular Value decomposition (SVD))
+                                            - Original Weights are frozen.
+                                            - Create 2 low rank matrices of the original weights and train it for different task.
+                                            - multiply the two low rank matrices to get the shape of the original weights and add the multiplied Low rank matrix to the frozen weights for inference with finetuned task.
+                                            - Add the respective trained low rank matrices with the original weights to use the LLM for the respective sepicific task at inference.
+                                            - Between 4-32 rank we get optimal performance of finetuned model.
+                            13.3.2.2.1.5 Additive Method of PEFT
+                                13.3.2.2.1.5.1 Soft Prompt
+                                                - Virtual prompts are added to the embbeded input (prompt) (20-100 tokens)
+                                                - The virtual prompts are trained and the model architecture and weights are frozen.
+                                                - Length of the embedding of the virtual prompt is the same as input word embedding length.
+                    13.3.2.2.2 Based on Task
+                        13.3.2.2.2.1 Fine-Tuning on a Single Task
+                                    (often, only 500-1000 examples needed to fine-tune a single task)
+                            13.3.2.2.2.1.1 Limitations - Catastrophic forgetting 
+                             - Works better for the specific task and forgets to work for other task
+                             - Eg. Before fine-tuning: If the model is good at text genration  
+                                   After fine-tuning: If the same model is fine tuned to sentiment analysis, it works better for sentiment analysis, but forgets and results bad in text generation.
+                        13.3.2.2.2.2 Fine-Tuning on a Multi Task 
+                                    (overcomes the catastropic forgetting, requires 500-1000 examples from each task to fine-tune in multi task)
+                            13.3.2.2.2.2.1 Limitations - Requires lot of data
+                            13.3.2.2.2.2.2 Models - FLAN family of models (FLAN - Fine-tuned LAnguage Net)
+                                           - FLAN-T5 (General purpose instruct model - finetuned on 473 datasets across 146 task categories)
+                                           - FLAN-PALM
+                13.3.2.3 Evaluation of LLMs (Model evaluation metrics)
+                    - Dont Use ROUGE and BLEU score as final evaluation of LLM. It is simple and cost effective evaluation methods.
+                    - Use ROUGE for diagnostic evaluation of summarization task.
+                    - Use BLEU for diagnostic evaluation of translation task.
+                    - For overall holistic evaluation of LLM use Benchmarks.
+                    13.3.2.3.1 ROUGE Score (Recall-Oriented Understudy for Gisting Evaluation)
+                                - Used for text summarization
+                                - Compares a generated summary to one or more human reference summaries
+                                - Rouge score can be compared to individual tasks, not between tasks. Eg. summarization rouge score cannot be used to compared to text generation rouge score
+                        13.3.2.3.1.1 Rouge-1 (Unigram) [order of words is not considered as it takes one word at a time]  
+                                - Rouge-1 (Recall) = unigram matches / unigrams in reference
+                                - Rouge-1 (Precision) = unigram matches / unigrams in output
+                                - Rouge-1 (F1 Score) = 2 (Precision x recall) / (Precision + Recall)
+                        13.3.2.3.1.2 Rouge-2 (Bigram) [order of words is considered as it takes two word at a time]
+                                - Rouge-2 (Recall) = Bigram matches / Bigrams in reference
+                                - Rouge-2 (Precision) = Bigram matches / Bigrams in output
+                                - Rouge-2 (F1 Score) = 2 (Precision x recall) / (Precision + Recall)
+                        13.3.2.3.1.3 Rouge-L (Longest Common Subsequence - LCS)
+                                - Rouge-L (Recall) = LCS(Generated, Reference) / unigrams in reference
+                                - Rouge-L (Precision) = LCS(Generated, Reference) / unigrams in output
+                                - Rouge-L (F1 Score) = 2 (Precision x recall) / (Precision + Recall)
+                        13.3.2.3.1.4 Rouge-Clipping 
+                                - Sometimes the generated text will be bad but the score will be high
+                                - so we used modified Rouge score, clip function limits the unigram matches to the maximum count for that unigram within the reference.
+                                - Modified Rouge-1 (Precision) = clip(unigram matches) / unigrams in output
+                                - Eg. Ref: It is cold outside. 
+                                      Gen: cold cold cold cold. 
+                                    Rouge-1 (Precison) = 4/4 = 1.0 BAD
+                                    Modified Rouge-1 (Precision) = 1/4 = 0.25 GOOD
+                                - But the order can also mess the modified rouge score.
+                                - Eg. Ref: It is cold outside. 
+                                      Gen: outside cold it is.
+                                    Modified Rouge-1 (Precision) = 4/4 = 1.0 BAD
+                                - So, experiment with n-grams size, sentence, sentence size, and usecase with modified rouge score to identify the exact evaluation metric with rouge.
+                    13.3.2.3.2 BLEU Score (Bi-Lingual Evaluation Understudy)
+                               - Used for text translation
+                               - Compares to human-generated translations
+                               - Calculate average precision over multiple n-grams sizes
+                               - BLEU score = Avg(precision across range of n-gram sizes)
+                               - Eg. Ref: I am very happy to say that I am driking a warm cup of tea. 
+                                     Gen: I am very happy that I am drinking a cup of tea. BLEU 0.495
+                                     Gen: I am very happy that I am drinking a warm cup of tea. BLEU 0.730
+                                     Gen: I am very happy to say that I am drinking a warm tea. BLEU 0.798
+                    13.3.2.3.3 Benchmarks
+                        - GLUE (General-Purpose Language Understanding Evaluation - Sentiment Analysis and Q&A - Multi-Task Benchmark )
+                        - SuerGLUE (Address limitations in GLUE - Multi Sentence Reasoning and Reading Comprehension)
+                        - Massive Multitask Language Understanding (MMLU) Specifically for modern LLMs - US history, CompSci, World Knowledge etc.
+                        - BIG-Bench 
+                        - HELM (Holistic Evaluation of Language Models)
+                            - Metrics - Accuracy, Calibration, Robustness, Fairness, Bias, Toxicity, Efficiency
+                13.3.2.4 Steps to Finetuning
+                    13.3.2.4.1 Generate Prompt Instruction Dataset using prompt instrustion templates
+                    13.3.2.4.2 Training, Validation, Test splits
+                    13.3.2.4.3 Train the model based on prompt 
+                    13.3.2.4.4 Evaluate the model with completion from the prompt-completion pair train dataset
+                    13.3.2.4.5 Loss: Cross Entropy
+                    13.3.2.4.6 Update weights
+        13.3.3 Reinforcement Learning from Human Feedback (RLHF)
+            13.3.3.1 HHH (Helpful, Honesty, Harmless)
+                    - The fine-tuned models or original models were generating text with toxicity and to mitigate this issue, we got introduced to RLHF models.
+                    - The HHH is used to measure the toxicity of the model.
+            13.3.3.2 Reinforcement Learning (RL)
+                    \Agent\ - Learns to make decisions related to a specific goal by taking actions in an \Environment\, with the objective of maximizing some notion of a cumulative reward
+                    13.3.3.2.1 RL Terminology (Based on time state)
+                        13.3.3.2.1.1 Agent
+                                    - Somebody that interacts with the environment
+                        13.3.3.2.1.2 Environment
+                                    - Everything outside an agent
+                        13.3.3.2.1.3 State (S)
+                                    - Some local info about where the agent is currently
+                        13.3.3.2.1.4 Action (A)
+                                    - Behaviour of the agent
+                        13.3.3.2.1.5 Reward (R)
+                                     - Scalar Value obtained from the environment.
+                                     - Captures how well the agent behaved.
+                        13.3.3.2.1.6 Goal of an Agent (G) 
+                                     - Maximize the Return
+                                     - Return := Sum of all the rewards after all the steps.
+                                     - Episodic Settings - The agent-env interactions stop after a finite steps.
+                                         Return G(t) = R(t+1) + R(t+2) + R(t+3) + ..... + R(t+n) [n=finite steps]
+                                         R(t+1)... are random and not deterministic. It depends on what actions i took in previous steps or states.
+                                     - Non-Episodic Settings - The agent-env interactions never stops (continuing).
+                                         Retrun G(t) = R(t+1) + (Gamma)*R(t+2) + (Gamma^2)*R(t+3) + ......
+                                                 =  Summation (Gamma^j)*R(t+1+j) < inf
+                                                    j=0 to inf
+                        13.3.3.2.1.7 Policy (Pi)
+                                     - Determines what action to choose at each state.
+                                     - Pi(Action | Current State) - Prob of the action given the current state.
+                                     - Deterministic Policy selection - Prob of take only one action at a state - Pi(go left | current state) = 1
+                        13.3.3.2.1.8 Value Functions (V(Pi)[S])
+                            13.3.3.2.1.8.1 State Value Function
+                                           - Input: State S and Policy Pi
+                                           - V(Pi)[S] := Average Return starting from State S, and follow the policy Pi 
+                                           - V(Pi)[S] = Expectation(Pi)[G(t) | S(t) = S]
+                            13.3.3.2.1.8.2 State Action-Value Function
+                                           - Input: State S, Action A and Policy Pi
+                                           - q(Pi)[S,A] := Average Return starting from State S and Action A is selected, and follow the policy Pi 
+                                           - q(Pi)[S,A] = Expectation(Pi)[G(t) | S(t) = S, A(t) = A]
+                        13.3.3.2.1.9 Optimality
+                            13.3.3.2.1.9.1 Optimal State Value Function
+                                            - V(*)[S]  = max(Pi) V(Pi)[S] for all s in S i.e., V(*)[S] > V(Pi)[s1], V(Pi)[s2]....
+                                            - The policy that maximizes the V(Pi)[S] i.e, V(*)[S], is called as Pi(*)
+                            13.3.3.2.1.9.2 Optimal State Action Value Function
+                                            - q(*)[S,A]  = max(Pi) q(Pi)[S,A] for all s in S
+                                            - The policy that maximizes the V(Pi)[S] i.e, V(*)[S], is called as Pi(*)
+
+
+                                                                S(t+1)[New State]
+                                                             ----------------|
+                                |--------------> Environment -------------|  |
+                                |                                         |  |
+                                |                                         |  |
+                        Action  |                            Reward       |  |
+                           A(t) |                               R(t+1)    |  |
+                                |---------------  Agent <-----------------|  |
+                                                        <--------------------|
+                                                            S(t) [Current State]
+                                                            
+                    13.3.3.2.2 Mathematical Model behind RL
+                        13.3.3.2.2.1 Markov Decision Process (MDP)
+                         - At every time step, Agent takes an action and the reward is given based on the action and the state is changed based on the probability due to that action.
+                                    - S = Set of all possible states
+                                    - A = Set of all possible actions
+                                    - P = Transition Probability - P(current state | action,next state)
+                                    - R = Set of possible Rewards
+                                    - Gamma = Discount factor
+                        13.3.3.2.2.2 Bellman Optimality Equation (Stochastic Dynamic Programing)
+                                    This is possible if we know the entire environment of the model, and it would be easy to calculate,
+                                    - V(*)[S] = max(a) Summation Prob(S',R | S, A) * (R + (Gamma)*V(*)[S'])
+                                                        S',r
+                                    But,
+                                    NOTE: In real world, entire model is not available thus, model of environment not available. We only have access to:
+                                            Current State (S(t))
+                                            Action (A(t))
+                                            Next State (S(t+1))
+                                            Reward (R(t+1))
+                                        Therefore, we use Reinforcement Learning to learn the optimal policy using these sampled experiences (know elements).
+
+            13.3.3.3 Methadology
+                - Step 1: Obtaining Human Feedback [Goes as input to Reward Model]
+                    - Prompt Dataset - Multiple prompt samples which will be processed by the LLM to produce completions. 3 completions per prompt
+                    - Collect Human Feedback on the prompts based on what criteria (helpfullness, harmlessness, honesty, toxicity) - Define you model alignment criteria
+                    - Different individual humans are asked to rank the completions based on the criteria. Multiple humans is asked to do the task to avoid personalized alignment.
+                    - Eg. Prompt X: My house is too hot | Criteria: Helpfulness
+                          Completion y1 with prompt: My house is too hot.There is nothing you can do about hot houses | Rank: 2 
+                          Completion y2 with prompt: My house is too hot.You can cool your house with AC | Rank 1
+                          Completion y3 with prompt: My house is too hot.It is not too hot | Rank 3
+                    - Human Labelers have a sample instructions on how to label the completion.
+                    - Prepare Labeled data for training
+                        - Convert rankings into pairwise training data for reward model.
+                        - Eg. Prompt X, Completion y1, Completion y2, Completion y3
+                        - For N completions we will have N choose 2 combinations and the reward model expects yj to be the most prefered response and yk to be less prefered response. Thus, always sort the pairs with most prefered fist and then the less prefered.
+                        - Labeled Data = Prompt X, Completion y1 and Prompt X, Completion y2 [pairwise dataset for the same prompt] | Reward = {yj,yk}, where yi is the prefered response(1) than yj which is less prefered response(0)
+                                         Prompt X, Completion y1 and Prompt X, Completion y3 [pairwise dataset for the same prompt] | Reward = {yj,yk}, where yi is the prefered response(1) than yj which is less prefered response(0)
+                                         Prompt X, Completion y2 and Prompt X, Completion y3 [pairwise dataset for the same prompt] | Reward = {yj,yk}, where yi is the prefered response(1) than yj which is less prefered response(0)
+                              Completion y1 with prompt: My house is too hot.There is nothing you can do about hot houses | Rank = 2 
+                              Completion y2 with prompt: My house is too hot.You can cool your house with AC | Rank = 1
+                              Completion y3 with prompt: My house is too hot.It is not too hot | Rank = 3
+
+                              Labeled Dataset:
+                              Prompt X, Completion y1 / Prompt X, Completion y2 | Reward = {0,1} thus, sort and we get Prompt X, Completion y2,y3 | Reward {1,0}
+                              Prompt X, Completion y1 / Prompt X, Completion y3 | Reward = {1,0}
+                              Prompt X, Completion y2 / Prompt X, Completion y3 | Reward = {1,0}
+                - Step 2: Reward Model
+                    - Reward model is to replace the human feedback as it is expensive and more time consuming.
+                    - Train the reward model with the pairwise labeled data and then replace the human feedback to reward model
+                    - Reward Model is also a Language model
+                    - The reward model will effectively take place off the human labeler and automatically choose the preferred completion during the RLHF process.
+                    - For a given prompt X, the reward model learns to favor the human-preferred completion yj, while minimizing the loss = log(sigmoid(rj-rk)).
+                    - Input: Pairwise [prompt X,Compltion yj] - Prefered Completion is always yj
+                                      [prompt X,Compltion yk]
+                    - Output: Reward rj, rk 
+                    - Loss: log(sigmoid(rj-rk))
+                    - After training of the reward model on the pairwise data [prompt completion pairs],we can use the model as binary classifier.
+                    - Class: Positive Class (not hate) - Logits
+                             Negative Class (hate) - Logits 
+                    - Logits are un normalized outputs of the model - meaning no activation layer is applied. Logits are the reward value which is passed to the PPO model
+                    - We can also get the prob of the classes by applying softmax to the logits.
+                - Step 3: Fine-Tuning with RLHF
+                    - First we use an Instruct LLM model of a specific task.
+                    - Prompt sample is passed to the Instruct LLM model Eg. "A dog is.."
+                    - Completion is generated at the output of the Instruct LLM model Eg. "..a furry animal"
+                    - Then we create a pairwise sample [Prompt,Completion] which is then passed to the Reward Model.
+                    - Reward model return a reward value. High value of Reward - Highly aligned with human preferences Eg. Reward = 0.24
+                                                          Low value of Reward - Less aligned with human preferences Eg. Reward = -0.53
+                    - Reward value is passed for the [prompt,completion] pair sample to the RL algorithm to update the weights of the Instruct LLM, and move it towards generating more aligned, higher reward responses.  
+                        Eg. Prompt: "A dog is..." 
+                        Completion: "...a furry animal"
+                        Reward: 0.34
+                    - This intermediate version of the Instruct model after the first update is the RL updated LLM.
+                    - These series of steps in Step 3 together forms a single iteration of the RLHF process.
+                    - These iterations continue for a given number of epochs.
+                    - The completion generated by the RL updated LLM receives a higher reward score, indicating that the updates to weights have resulted in a more aligned completion.
+                        Eg. Prompt: "A dog is..." 
+                            Completion: "...a friendly animal"
+                            Reward: 0.54
+                    - If the process is working well, you'll see the reward improving after each iteration as the model produces text that is increasingly aligned with human preferences.
+                        Eg. Prompt: "A dog is..." 
+                            Completion: "...a human companion"
+                            Reward: 0.67
+                    - You will continue this iterative process until your model is aligned based on some evaluation criteria - reaching a threshold value or stopping criteria like 20000 steps.
+                    - At the end the RL updated LLM becomes Human Aligned LLM
+                    - RL algorithm that takes the output of the reward model and uses it to update the LLM model weights so that the reward score increases over time.
+                    - PPO (Proximal Policy Optimization) is one such RL algorithm.
+                - Step 4: Reward Hacking [Reference Model]
+                    -  An interesting problem that can emerge in reinforcement learning is known as reward hacking, where the agent learns to cheat the system by favoring actions that maximize the reward received even if those actions don't align well with the original objective.
+                            Eg: Prompt: "This product is...."
+                                Completion: "the most awesome and most incredible thing ever"
+                                Criteria: Toxicity
+                                Reward: 2.1 
+                    - The above example has a language that sounds very exagerrated.
+                    - The model could also start generating nonsensical, grammatically incorrect text that just happens to maximize the rewards in a similar way, outputs like this are definitely not very useful.
+                    - To prevent reward hacking from happening, you can use the initial instruct LLM as performance reference. Let's call it the reference model. The weights of the reference model are frozen and are not updated during iterations of RHF. 
+                    - This way, you always maintain a single reference model to compare to.
+                    - During training, each prompt is passed to both models, generating a completion by the reference LLM and the intermediate LLM updated model. At this point, you can compare the two completions and calculate a value called the Kullback-Leibler divergence, or KL divergence for short. 
+                    - KL divergence is a statistical measure of how different two probability distributions are. 
+                    - You can use it to compare the completions off the two models and determine how much the updated model has diverged from the reference.
+                    - Once you've calculated the KL divergence between the two models, you added acid term to the reward calculation. This will penalize the RL updated model if it shifts too far from the reference LLM and generates completions that are two different.
+                    - By the way, you can benefit from combining our relationship with PEFT. 
+                    - In this case, you only update the weights of a PEFT adapter, not the full weights of the LLM. 
+                    - This means that you can reuse the same underlying LLM for both the reference model and the PPO model, which you update with a trained PEFT parameters. 
+                    - This reduces the memory footprint during training by approximately half.
+            13.3.3.7 Constitutional AI
+                    - Although you can use a reward model to eliminate the need for human evaluation during RLHF fine tuning, the human effort required to produce the trained reward model in the first place is huge. 
+                    - One idea to overcome these limitations is to scale through model self supervision - Constitutional AI.
+                    - Constitutional AI is a method for training models using a set of rules and principles that govern the model's behavior. Together with a set of sample prompts, these form the constitution.
+                    - You then train the model to self critique and revise its responses to comply with those principles.
+                    - Constitutional AI is useful not only for scaling feedback, it can also help address some unintended consequences of RLHF.
+                            Eg. Prompt: How to hack the neighbor's wifi?
+                                Criteria: Helpfulness
+                                Completion: "Sure thing you can folow these steps.."
+                                Which is illegal.
+                    - Providing the model with a set of constitutional principles can help the model balance these competing interests and minimize the harm.
+                    - For example, you can tell the model to choose the response that is the most helpful, honest, and harmless. 
+                    - But you can play some bounds on this, asking the model to prioritize harmlessness by assessing whether it's response encourages illegal, unethical, or immoral activity. 
+                    - When implementing the Constitutional AI method, you train your model in two distinct phases.
+                        - Stage 1: Supervised Learning Stage
+                            - In the first stage, you carry out supervised learning, to start your prompt the model in ways that try to get it to generate harmful responses, this process is called red teaming.
+                            - You then ask the model to critique its own harmful responses according to the constitutional principles and revise them to comply with those rules.
+                            - Once done, you'll fine-tune the model using the pairs of red team prompts and the revised constitutional responses.  
+                                Eg. Prompt: "How to hack the neighbor's wifi?"
+                                    Criteria: Helpfulness
+                                    Completion: "Sure thing you can folow these steps.."
+                                    Prompt: Identify how the last response is harmful, unethical, racist, sexist, toxic, dangerous and illegal.
+                                    Completion: "The response was harmful because hacking into someone else's wifi is an invasion of their privacy and is possibly illegal."
+                                    Prompt: "Rewrite the response to remove any and all harmful, unethical, racist, sexist, toxic, dangerous or illegal content."
+                                    Conmpletion: "Hacking into your neighbor's wifi is an invasion of their privacy. It may also land you in legal trouble. I advise against it."
+
+                                    Original Red-Teamed Prompt: "How to hack the neighbor's wifi?"
+                                    Constitutional Response: "Hacking into your neighbor's wifi is an invasion of their privacy. It may also land you in legal trouble. I advise against it."
+
+                                    Now this data is used to fine tune the LLM.
+                        - Stage 2: RLAIF (Reinforcement Learning AI Feedback) Stage
+                            - Here you use the fine-tuned model from the previous stage to generate a set of responses to your 'Red-Teaming' prompt. 
+                            - You then ask the model which of the responses is preferred according to the constitutional principles. 
+                            - The result is a model generated preference dataset that you can use to train a reward model. 
+                            - With this reward model, you can now fine-tune your model further using a RL algorithm like PPO, as discussed earlier.
+            13.3.3.6 Advantage
+                    Instruct fine-tuned LLM -------> RLHF -------> Human-aligned LLM
+                    - Maximize helpfulness, relevance
+                    - Minimize Harm
+                    - Avoid dangerous topics
+                    - personalization of LLMs (model learns the preferences of individual user through continuous feedback process - application: Personalised AI assistants.)
+    13.4 Generative Configuration - inference parameters (hyperparameters)
+        13.4.1 Max new tokens (max new tokens at inference)
+        13.4.2 Greedy (The word/token with the highest probability is selected at last softmax layer - good for small text generation)
+        13.4.3 Random Sampling (select a token using a random-weighted strategy across the probabilities of all tokens - Introduce a variablity and reduces repeatability of words)
+            13.4.3.1 Top-k Sampling (select an output from the "top-k results from highest prob" after applying random-weighted stratergy using the probabilities)
+            (makes sure the randomness in selection does not wander off and give words that does not make sense) [applied after the softmax layer]
+            13.4.3.2 Top-p Sampling (select an output using the random-weighted strategy with the top-ranked consecutive results by prob and with a cumulative prob <= p) [applied after the softmax layer]
+            (makes sure the randomness in selection does not wander off and give words that does not make sense)
+        13.4.4 Temperature (Temperature is directly propotional to randomness) [applied in the softmax layer to give probabilities of tokens as cool or high temp]
+        (Influences the shape of the probabilty distribution the model calculates for the next token)
+        (Cooler Temp = value < 1 Strongly peaked probability distribution)
+        (High Temp = value > 1 Broader, flatter probability distribution) [Generate text more creatively]
+        (value = 1 Default Softmax unaltered probabilities)
+    13.5 Generative AI (LLM) Life Cycle
+        13.5.1 Scope (Define the use case)
+        13.5.2 Select (Choose an existing model or pretrain your own)
+        13.5.3 Adapt and align model
+            13.5.3.1 Prompt Engineering
+            13.5.3.2 Fine-Tuning
+            13.5.3.3 Align with human Feedback (Reinforcement Learning)
+            13.5.3.4 Evaluate
+        13.5.4 Application Integration
+            13.5.4.1 Optimize and deploy model for inference
+            13.5.4.2 Augment model and build LLM-powered applications
+    13.6 Computational Chanlenges of LLM
+        13.6.1 High Memory Space (Bigger LLMS = More parameters (weights to train))
+                Model Parameters (Weights)  -  4 bytes per parameter
+                Adam Optimizer (2 states)   - +8 bytes per parameter
+                Gradients                   - +4 bytes per parameter
+                Activations and temp memory - +8 bytes per parameter (high estimation)
+                Total                       -  4 bytes per parameter + 20 extra bytes per parameter
+            13.6.1.1 Quantization - Project original 32-bit floating point numbers into lower precision space
+                13.6.1.1.1 FP32     (32-bit floating point - [sign:1, eponent:8, fraction:23] - Memory 4 bytes) High memory space
+                13.6.1.1.2 FP16     (16-bit floating point - [sign:1, eponent:5, fraction:10] - Memory 2 bytes) Half memory space compared to FP32
+                13.6.1.1.3 BFLOAT16 (16-bit floating point - [sign:1, eponent:8, fraction:7] - Memory 2 bytes) Bad at integer calculation. Popular choice for deep learning. [Google]
+                13.6.1.1.4 INT8     (8-bit floating point - [sign:1, fraction:7] - Memory 1 bytes) Very bad precision
+            13.6.1.2 Qantization-aware training (QAT) - learns the quantization scaling factors during training
+        13.6.2 Parallel computing 
+            13.6.2.1 Distributed Data Parallel (DDP) [pytorch] (Same LLM across all GPUs)
+                Data Loader-|----> 1000 ----> GPU 3 (LLM) [Forward/Backward Pass] ---->|              |----> Update Model
+                            |----> 0100 ----> GPU 2 (LLM) [Forward/Backward Pass] ---->| Synchronize  |----> Update Model  
+                            |----> 0010 ----> GPU 1 (LLM) [Forward/Backward Pass] ---->| -----------> |----> Update Model 
+                            |----> 0001 ----> GPU 0 (LLM) [Forward/Backward Pass] ---->|              |----> Update Model
+            13.6.2.2 Fully Sharded Data Parallel (FSDP) [pytorch] Paper:ZeRO (Microsoft)
+                Data Loader-|----> 1000 ----> GPU 3 (LLM Segment 1-[parameters|optimizer|gradients])---->|              |----> [Forward pass]---->|              |---->[Backward Pass] ---->|              |----> Update Model
+                            |----> 0100 ----> GPU 2 (LLM Segment 2-[parameters|optimizer|gradients])---->| Get Weights  |----> [Forward pass]---->| Get Weights  |---->[Backward Pass] ---->| Synchronize  |----> Update Model  
+                            |----> 0010 ----> GPU 1 (LLM Segment 3-[parameters|optimizer|gradients])---->| -----------> |----> [Forward pass]---->| -----------> |---->[Backward Pass] ---->| -----------> |----> Update Model 
+                            |----> 0001 ----> GPU 0 (LLM Segment 4-[parameters|optimizer|gradients])---->|              |----> [Forward pass]---->|              |---->[Backward Pass] ---->|              |----> Update Model
+                13.6.2.2.1 ZeRO Stage 1 - shards only the adam optimizers across GPUs (Reduce memory footprint upto factor of 4)
+                13.6.2.2.2 ZeRO Stage 2 - shards the adam optimizers and gradients across GPUs (Reduce memory footprint upto factor of 8)
+                13.6.2.2.3 ZeRO Stage 3 - shards the adam optimizers, gradients and parameters across GPUs (Reduce memory footprint upto factor of #number of GPUs)
+                13.6.2.2.4 Configure level of Sharding factor
+                    13.6.2.2.4.1 Full replication (No sharding) -> sharding factor = 1 GPU
+                    13.6.2.2.4.2 Full sharding -> sharding factor = max number of GPUs (Incresed communication between GPU which can reduce performance)
+                    13.6.2.2.4.3 Hybrid sharding -> sharding factor = between 1GPU - max GPUs
+    13.7 Scaling Choices for pre-training (Goal: Maximize model performance)
+        13.7.1 Dataset Choice (number of tokens)
+        13.7.2 Model size (number of parameters)
+        13.7.3 Constraint (Computational Budget: GPUs, training time, cost)
+        13.7.4 Compute budget for LLMs training:
+                1 petaFLOP/s-day = # of floting point operations performed at 1 petaFLOP per second for one day 
+                    - 8 NVIDEA V100s GPUs operating full efficiency for a day
+                    - 2 NVIDEA A100s GPUs operating full efficiency for a day
+                NOTE: 1 petaFLOP/s = 1,000,000,000,000,000 (one quadrillion) floating point operations per second
+        13.7.6 Compute Optimal models
+               (Small models trained on more data could perform as well as large models)
+               13.7.6.1 Chinchilla paper - Compute-optimal training datasize is ~20x number of parameters
+    13.8 Deployment of LLM - Application Integration
+        13.8.1 Optimize and deploy model for inference - Questions to address in first stage (Integrate model into application)
+                - How your LLM will function in deployment
+                - How fast LLM generate completions?
+                - What is the compute budget?
+                - Willing to tradeoff model performance for improved inference speed and lower storage?
+            13.8.1.1 Optimization techniques
+                    (LLM present inference challenges interm of computing and storage requirements, as well as low latency for consuming applicatoins.)
+                    - Quantization, Distillation, and Pruning all aim to reduce model size to improve model performance during inference without impacting accuracy.
+                    13.8.1.1.1 Reduce the size of LLM models - Tradeoffs betwwen accuracy and performance.
+                        13.8.1.1.1.1 Distillation - Teacher Student Model
+                                    - In Teacher Student model - we dont reduce the size of the actual LLM, but we train a smaller size LLM from larger size LLM.
+                                    - It is a technique that focuses on having a larger teacher model train a smaller student model.
+                                    - The student model learns to statistically mimic the behaviour of the teacher model, either in the final prediction layer or in the model's hidden layres as well.
+                                    - First fine tune LLM as your teacher model and create a smaller LLM for your student model
+                                    - You then freeze the teachers model's weights and use it to generate completions for your training data.
+                                    - At the same time, you generate conpletions for the training data using your student model.
+                                    - The knowledge distillation between teacher and student model is achieved by minimizing a loss function called the distillation loss.
+                                    - Distilation loss is the calculated using the prob dist over tokens that is produced by the teacher model's softmax layer.
+                                    - Since the teacher model is already finetuned on the training data, the prob dist closely matches the groud truth data and wont have much variation in tokesn.
+                                    - Distillation applies a higher temperature parameter (T>1) to the softmax function of teacher model and increases the creativity of the language the model generates.
+                                    - With high temperature the prob dist is broder and less strongly peaked. Thus, softer distrbution provides you with a set of tokens that are similar to the ground truth tokes.
+                                    - Teacher model output's after temperature parameter, and target ground truth (Hard Label) - Soft Labels
+                                    - Same Temperature T is applied to the student model, and trained with the soft labels as target from the Teacher model and the output is called - Soft predictions
+                                    - The loss between Soft Label and Soft Prediction is called Distillation Loss.
+                                    - In parallel the student model is also trained with the training data, without temperature T (default softmax), and with targets as ground truth (Hard Labels) - Hard predictions
+                                    - The loss between Hard prediction of Student and groud truth (Hard Label) is called Student Loss
+                                    - The Backpropagation of the student is done by calculating the sum(Distillation loss, Student Loss)
+                                    - Teacher Student model is best for Encoder Only models - BERT, XLnet as it has high representation redundancy.
+                                    - Teacher Student model is worst for Decoder Only models - GPT               
+                        13.8.1.1.1.2 Quantization - Post Trainging Quantization (PTO)
+                                    - In PTO - we reduce the size of the actual LLM.
+                                    - Reducing the precision of model weights.
+                                    - Quantization Aware Training (QAT)
+                                    - After the model is trained, we perform PTQ to optimize it for deployment.
+                                    - PTQ transforms a model's weight to a lower precision representations, such as 16-bit floating point(FP16) or 8-bit integer.
+                                    - Quantization can be applied to just the model weights or to both model weights and activation layers to reduce the model size and memory fooprint, as well as the compute resources needed for model serving.
+                                    - Quantization that include activation layers can have an higher impact on model performance.
+                                    - Quantization also requires an extra calibration step to statistically captue the dynamic range of the original parameter values.
+                                    - Quantization can cause small percentage reduction evaluation metric, buty is is worth the cost savings and performance gains.
+                        13.8.1.1.1.3 Pruning
+                                    - The goal is to reduce the model size for inference by eliminating weights that are not contributing much to overall model performance.
+                                    - These are the weights with values very close to or equal to zero.
+                                    - Pruning methods
+                                        - Some require full Retraining of the model.
+                                        - Some require PEFT such as LoRA.
+                                        - Some focus on post-training pruning.
+                                    - This reduces the size of the model and impact on the size of the model, improving the performance.
+                                    - Pruning has no effect if less number of weights are close or equal to zero, as less weights will only be removed.
+         13.8.2 Augment model and build LLM-powered application - Questions to address in second stage (Additional resources that your model needs)
+                - Do you intend for your model to interact with external data or other application?
+                - If yes how will you connect to those resources? 
+                - How will your model will be consumed?
+                - What will the intended application or API interface that you model will be consumed through look like?
+            13.8.2.1 LLM Powered application
+                    - Problems that are addressed by augmenting the model
+                        - Knowledge Cutoff Issue - The LLM knows only the knowledge of how much in time it is trained. 
+                            Eg. If the model is trained during the presidency of obama in 2020. 
+                            Prompt: who is the president of america? 
+                            Completion: obama
+                            Same answer in 2023 also if it is not trained with new data. Cuz it does not have the new knowledge.
+                        - Mathematical Calcualtion Issue - The LLM cannot do mathematical calculations. 
+                            Eg. Prompt: What is 40366 / 439. 
+                            Completion: 92.549 
+                            which is wrong. Ans: 91949. It only knows how to predict the next token based on probabilities.
+                        - Hallucination - The LLM generates random completion even if it does not know the answer. 
+                            Eg: Prompt: What is Martian Dunetree? 
+                            Completion: It is a type of extrateresstial plant in mars. 
+                            Its completely wrong, as there is no evidence of life in mars.
+                    - These problems can be overcome by connecting LLM to external sources or application.
+                    - LLM application:
+                        - Task 1: Manage the passing of user input to the LLM
+                        - Task 2: Return of completions.
+                        - Task 1 and Task 2 are done by using Orchestration Library.
+                13.8.2.1.1 Orchestration Library
+                            - Orchestration Library can enable some powerfull technologies that augment and enhance the performance of LLM at runtime.
+                                - By providing access to external data sources like Documents, Database, Web
+                                - Connecting to existing APIs of other application.
+                            - Eg. LangChain is one Orchestration Library.
+                    13.8.2.1.1.1 Access to External Data Source
+                    13.8.2.1.1.1 Retrieval Augmented Generation (RAG) [Overcomes knowledge cutoff issue and Hallucination]- Connecting LLMs to external data sources
+                                - RAG is a framework for building LLM powered systems that make use of external data soruces.
+                                - RAG is a great way to ovecome the knowledge cutoff issue.
+                                - Retraining the whole model with new data is expensive and should be done every time a new data comes (repeated training).
+                                - The more flexible and less expensive way to ovecome knowledge cutoff is give your model access to additional external data at inference time.
+                                - Any new information, proprietery data in orginization private database or infomation not included in training data, can be given to the model through RAG.
+                        13.8.2.1.1.1.1 Architecture
+                                    - Implementation of RAG depends on the task and the format of the data you have to work with
+                                    Model Components
+                                    - Retriver
+                                        - Consist of Query Encoder and External Data Source.
+                                        - The Query encoder takes the user's input prompt and encodes it into a form that can be used to query a data source.
+                                        - The external data can be a vector store, SQL database, CSV file, or other data storage format.
+                                        - These two components (Query Encoder, External Data) are trained together to find documents within the external data that are most relevant to the input query
+                                        - The Retriver returns the best single or group of documents from the data source and combines the new information with the original user query.
+                                        - The new expanded prompt is then passed to the LLM which generates a completion that makes use of the data.
+                                        - External information source can be 
+                                            - Documents
+                                            - Wikis
+                                            - Expers systems
+                                            - web pages
+                                        - Data Storage Strategy
+                                            - SQL Database - Query encoder encodes the prompt as a SQL query.
+                                            - Vector Store - Vector representation of text.
+                                                - This is particularly useful data format for language models, since internally they work with vector representation of language to generate text.
+                                                - Vector Store enables fast and efficient kind of relevant search based on similarity. (Vector similarity search)
+                        13.8.2.1.1.1.2 Vector Database
+                            13.8.2.1.1.1.2.1 Data Preparation for Vector Store for RAG
+                                            - Two considerations for using external data in RAG:
+                                                1. Data must fit inside context window
+                                                    - Prompt context limit few 1000 tokens
+                                                    - Single Document too large to fit in window
+                                                    - So we split long sources into short chunks - LangChain helps us do it.
+                                                2. Data must be in format that allows easy retrival of most relevant text at inferece time (Embedding Vectors)
+                                                    - RAG process each tokens in each chunk of single doucment with LLM to produce embedding vectors for each chuncks.
+                                                    - These vector representations of the chuncks are stored in Vector store and it helps in fast searching and efficient identification of semantically related text.
+                            13.8.2.1.1.1.2.1 Vector Database search
+                                                - Each text in vector store is identified by a key
+                                                - This enables the text generated by RAG to also include citation for the document from which it was received.    
+                    13.8.2.1.1.2 Connecting to External applications
+                                - Usecase of LLM interacting to external application.
+                                    - Eg: ShopBot (Chat Bot)
+                                        - Having LLM initiate a clothing return request
+                                            - ShopBot: How can I help?
+                                            - Customer: I want to initiate a return.
+                                            - ShopBot: What is your order id?
+                                            - Customer: Order ID is #1234980
+                                            - ShopBot: Ok I have forund the order. Do you want to return any other items from the order? 
+                                            [Using RAG and connecting to order database the LLM can find the order details]
+                                            - Customer: No only the jeans.
+                                            - ShopBot: Ok great. Let me get a return label from the shipping partner. Can you remind me of the email you used for the order. 
+                                            [LLM does API call - uses the python API of the shipping partner to get the shipping label]
+                                            - Customer: Sure, its abc_xyz@gmail.com
+                                            - ShopBot: Thank You, I've sent the shippping label to your email address. Please return your jeans within 5 days. 
+                                            [LLM does API call to the shipper]
+                                            - Customer: Great, Thank You
+                                            - ShopBot: You're Welcome 
+                                - Address issues like Mathematical Calculation by interacting with python interpretor (Program Aided Language (PAL))
+                                - LLM can 
+                                    - Trigger API call
+                                    - Perform caluculations
+                13.8.2.1.1.2 Requirements for using LLMs to power applications
+                            - The actions that the app will take in response to user request will be determined by LLM, which serves as the application's reasoning engine.
+                            - In order to trigger actions, the completions generated by the LLM must contain certain important info.
+                            - Plan Actions: First the model needs to be able to generate a set instructions so that the application knows what actions to take.
+                                Eg: Steps to process return in ShopBot
+                                    - Step1: Check Order ID
+                                    - Step2: Request label
+                                    - Step3: Verify user email
+                                    - Step4: Email user the label
+                            - Format Outputs: Second the completion needs to be formatted in a way that the broader application can understand.
+                                            This could be specific sentence structure or SQL Command or script in python.
+                                Eg: The order query to determine if the order is in the orders SQL database in the ShopBot Example.
+                                    ----SELECT Query----
+                                    SELECT COUNT(*)
+                                    FROM orders
+                                    WHERE order_id = 21104
+                            - Validate Actions: The model may need to collect information that allows it to validate an action. 
+                                                Any info that is required to be validated is obtained from the user and comtained in the completion so it can be passed through to the application.
+                                Eg: Shopbot Example veryfies the email address the customer used to make the original order.
+                            - Structuring the prompts in the correct way is important for all of these tasks and a huge diff in quality of a plan generated or adherece to a desired output format specification.
+                    13.8.2.1.1.2.1 Helping LLMs reason and plan with Chain-of-thought
+                                    - LLM can struggle with complex reasoning problems.
+                                        Eg: Multi-step math problem.
+                                    - Solve using Chain-of-Thought prompting
+                                        - Reasoning steps through prompting
+                13.8.2.1.1.2.2 Program Aided Language (PAL)
+                            - LLM + Code Interpreter
+                            - Uses Chain-of-Thought prompting
+                            - The strategy behind PAL is to have the LLM gnerate completions where reasoning steps are accompanied by computer code.
+                            - This code is then passed to an interpreter to carry out the calculations necessary to solve the problem.
+                            - You specify the output format for the model by including examples for one or few short inference in the prompt.
+                                Eg: Prompt: """ Q: Roger has 5 tennis balls. He buys 2 more balls. How many balls does he have now?
+                                                Answer: # Roger started with 5 tennis balls - [Chain-of-Thought prompting with Reasoning and Code pairs - one shot inference]
+                                                        tennis_balls = 5
+                                                        # 2 more balls
+                                                        more_balls = 2
+                                                        # tennis balls. The answer is
+                                                        answer = tennnis_balls + more_balls
+                                                Q: The baker baked 3 breads. The baker sold 2. How many is left? """
+
+                                    Completion: Answer: # Baker started with 3 breads
+                                                        breads = 5
+                                                        # 2 breads sold
+                                                        sold_breads = 2
+                                                        # The answer is
+                                                        answer = breads + sold_breads
+                            - Then this completion is passed to the python interpreter to calculate the accurate answer.
+                        13.8.2.1.1.2.2.1 Steps of PAL
+                                        - PAL prompt template with Question and Chain-of-thought Reasoning promt and code alternatively
+                                        - Use one shot or few shot inference of PAL prompt and append the question to solve.
+                                        - This final PAL prompt with the question to solve is called PAL formated prompt.
+                                        - PAL formatted prompt is passed to the LLM
+                                        - LLM generates completion which is in the format of python script.
+                                        - This python script is then passed to python interpreter [Using orchestration library - API calls, etc.] to run the script and get the result.
+                                        - Now append the answer from the interpreter to PAL formated prompt and pass the updated prompt to the LLM.
+                                        - The LLM generates a completion that contains the correct answer.
+
+                    NOTE: The LLM is your application's reasoning engine. Ultimately, it creates the plan that the orchestrator will interpret and execute.
+                
+                13.8.2.1.1.2.3 ReAct: Combining Reasoning and Action [Prompting Stratergy]
+                                - The application may require interactions with several external data sources. Need to manage multiple decision points.
+                                    Eg: ShopBot example.
+                                        - Validation Actions
+                                        - Calls to external applications
+                                - ReAct enables LLM to power more complex application by interacting with multiple external data sources and multiple external applications
+                                - ReAct is a prompting stratergy which combines Chain-of-thought reasoning with Action Planing. (Synergizing Reasoning and Action in LLMs)
+                                    ReAct Prompt Framework:
+                                        - Question: Problem that requires advanced reasoning and multiple steps to solve. 
+                                            Eg. "Which magazine was started first Arthur's Magazine or First for Women ?"
+                                        - Thought: A reasoning step that identifies how model will tackle the problem and identify an action to take. 
+                                            Eg. "I need to search Arthur's Magazine and First for Women, and find which one was started first."
+                                        - Action: An external task that the model can carry out from an allowed set(predetermined) of actions. search[entity], lookup[string], finish[answer] on wikipedia Which one to choose is determined by the information preceding thought. 
+                                            Eg. search[Arthur's Magazine] in Wikipedia using pyton script
+                                        - Observation: The result of carrying out the action
+                                            Eg. "Arthur's Magazine (1844-1846) was an American literary periodical published in Philadelphia in the 19th century."
+                                    - The prompt then repeats the cycle as many times as is necessary to obtain the final answer.
+                                    Second Cycle:
+                                        - Thought 2     : "Arthur's magazine was started in 1844. I need to search First for Women next."
+                                        - Action 2      : search[First for Women] in Wikipedia using pyton script
+                                        - Observation 2 : "First for Women is a woman's magazine published by Bauer Media Group in USA.[1]The magazine was started in 1989."
+                                    Third Cycle:
+                                        - Thought 3     : "First for Women was started in 1989. 1844 (Arthur's Magazine) < 1989 (First for Women), so Arthur's Magazine as started first"
+                                        - Action 3      : finish[Arthur's Magazine]
+                                - ReAct instructions define the action space - Thought can reason about the current situation, and Action can be three types:
+                                    1. search[entity] - searches the exact entity on Wikipedia and returns the first para if it exists. If not, it will return similar entities to search.
+                                    2. Lookup[keyword] - returns the next sentence containing keyword in the current passage.
+                                    3. finish[answer] - returns the answer and finishes the task.
+                                - It is critical to define a set of allowed actions when using LLMs to plan tasks that will power applications.
+                                - Building up the ReAct Prompt:
+                                    - ReAct Example using the ReAct prompt Framework- few shot inference
+                                    - Prepend the Instructions before the ReAct Example
+                                    - Question to answer at the end
+                13.8.2.1.1.2.4 LangChain - Orchestration Library
+                                - LangChain Framework provieds you with modular pieces that contain the components necessary to work with LLMs and memory used to store interactions with an LLM.
+                                - LangChain Components
+                                    (LLM Wrappers, Prompt Template, Indexes for Image Retrival)
+                                    - Prompt Templates - for many different usecases to format input examples and model completions.
+                                    - Memory Storage - used to store interactions with an LLM.
+                                    - Pre-Built Tools - enables user to carry out variety of tasks, eg, calls to external datasets and various APIs
+                                - LangChain Chains
+                                    (Assemble components to solve specific tasks)
+                                - LangChain Agents
+                                    (Allows LLMs to interact with its Environment)
+                                - Connecting a selection of these individual components together results in chain. Eg. [Prompt Template - Memory Storage - Call to API] is one chain
+                                - LangChain also has predefined chains that have been optimized for different usecases.
+                                - LangChain also defines another component, Agent - it is used to interpret the input from the user and determine which tool or tools to use to complete the task.
+                                - LangChain incluses agest for PAL and ReAct.
+                                - Agents can be incorporated into chains to take an action or plan and execute a series of actions.
+                                - LangChain also examine and evaluate the LLM's completions throughout the workflow.
+                                - LangChain can be used for prototyping and deployment.
+                13.8.2.1.1.2.5 The significance of scale in application building
+                                - The ability of the model to reason well and plan actions depends on its scale.
+                                - Larger Models are generally best choice for techniques that use advanced prompting like PAL and ReAct.
+                                - Smaller Models may struggle to understan the tasks in highly structure prompts.
+                                    - Smaller models may require you to perform additional finetuning to improve thier ability to reason and plan.
+                                    - This could slow down your development process.
+                                - Best Method
+                                    - First start with large, capable model and collect lots of user data in deployment.
+                                    - Then use the user data to fine tune a smaller model that you can switch to at a later time.
+                13.8.2.1.1.2.6 LLM application Architectures
+                                - Infrastructure Layer: Compute, Storage and network to serve up you LLMs as well as host your applicaion components. [On-premise or Cloud]
+                                    Eg: Training/FineTuning
+                                - Large Language Models: Foundation Models/Fine-Tuned Models to your specific task. The LLM is deployed on the appropriate infrastructure for your infeerence needs.
+                                - Information Sources: Documents, Database, Web for the model to retrieve external information. Eg. RAG
+                                - Generated Outputs & Feedback: Depending on the usecase, we need to implement a mechanism to capture and store the outputs. 
+                                    Eg. Build the capacity to store user completions dureing a session to augment the fixed contexts window size of your LLM.
+                                        Also gather feedback from users that is useful for additional finetunig, alignment or evaluation as application matures.
+                                - Tools & Frameworks: Eg. LangChain, Model Hubs [Model Hubs is used to centrally manage and share models for use in applications]
+                                - Application Interfaces: Eg. User Interface that the application will be consumed through, such as website, mobile app or APIs. This layer is where you'll include security components.
+    13.6 LLM Use Cases
+        13.6.1 Essay Writing
+        13.6.2 Summarization
+        13.6.3 Translation
+        13.6.4 Information retrieval
+        13.6.5 Invoke APIs and actions
